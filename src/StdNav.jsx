@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { AboutIcon, ComplaintIcon, HelpIcon, HomeIcon, LogoutIcon, SubmitIcon, User } from "./icons"
-import Navitem from "./NavItem"
+import Navitem from "./Navitem"
 
 
 const StdNav = ({ slide }) => {

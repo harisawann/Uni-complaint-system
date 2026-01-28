@@ -1,5 +1,5 @@
 import { AllIcon, AssignIcon, HistoryIcon, HomeIcon, LogoutIcon, ManageIcon, User } from "./icons"
-import Navitem from "./NavItem"
+import Navitem from "./Navitem"
 
 
 const AdminNav = ({ slide }) => {

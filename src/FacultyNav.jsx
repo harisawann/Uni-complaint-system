@@ -1,5 +1,5 @@
 import { AssignIcon, HomeIcon, LogoutIcon, ReportIcon, ResponseIcon } from "./icons"
-import Navitem from "./NavItem"
+import Navitem from "./Navitem"
 
 const FacultyNav = () => {
     return (
