@@ -1,7 +1,7 @@
 import { AssignIcon, HomeIcon, LogoutIcon, ReportIcon, ResponseIcon } from "./icons"
 import Navitem from "./Navitem"
 
-const FacultyNav = () => {
+const FacultyNav = ({slide}) => {
     return (
         <>
             <div className="max-sm:p-5 " >
