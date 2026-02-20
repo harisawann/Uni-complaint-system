@@ -1,26 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
 const Login = () => {
 
   const inputstyling = " max-sm:border-2 max-sm:border-gray-400 max-sm:rounded-md max-sm:py-1 max-sm:mb-4 max-sm:px-2 lg:w-full lg:border lg:rounded-lg lg:px-3 lg:py-2 lg:mb-4"
 
-  const [email, setEmail] = useState("");
+  const [name, setname] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState(""); // Student / Faculty / Admin
-  const [clicked, setClicked] = useState(false); // For animation
+  const [role, setRole] = useState("");
+  const [clicked, setClicked] = useState(false);
 
-  const formFilled = email && password && role;
-
-
+  const formFilled = name && password && role;
 
   const navigate = useNavigate();
 
   const handlelogin = () => {
-    if (role === "Student") navigate("/student/navbar");
-    if (role === "Faculty") navigate("/faculty/navbar");
-    if (role === "Admin") navigate("/admin/navbar");
+    if (role === "Student") navigate("/student", { state: { name } });
+    else if (role === "Faculty") navigate("/faculty", { state: { name } });
+    else if (role === "Admin") navigate("/admin", { state: { name } });
   };
 
 
@@ -34,11 +33,11 @@ const Login = () => {
         </h2>
 
         <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={inputstyling}
+          type="text"
+          placeholder="name"
+          value={name}
+          onChange={(e) => setname(e.target.value)}
+          className={inputstyling}          
         />
 
         <input

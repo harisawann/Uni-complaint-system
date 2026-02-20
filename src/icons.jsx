@@ -3,7 +3,7 @@ export function HomeIcon() {
 }
 
 export function AboutIcon() {
-  return <i className="fa-regular fa-user"></i>
+  return <i className="fa-solid fa-user"></i>
 }
 
 export function AngleRightIcon() {
@@ -35,7 +35,7 @@ export function ResponseIcon() {
 }
 
 export function ReportIcon() {
-  return <i className="fa-regular fa-file"></i>
+  return <i className="fa-solid fa-file"></i>
 }
 
 export function AssignIcon() {
@@ -55,5 +55,5 @@ export function HistoryIcon() {
 }
 
 export function User() {
-  return <i className="fa-regular fa-user"></i>
+  return <i className="fa-solid fa-user"></i>
 }

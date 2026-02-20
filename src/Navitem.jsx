@@ -12,8 +12,7 @@ const Navitem = ({ to, label, icons, showLabel }) => {
                     {label && (
                         <span
                             className={` text-nowrap transition-all delay-80 duration-100 ${showLabel ? "opacity-100" : "opacity-0"
-                                }`}
-                        >
+                                }`}>
                             {label}
                         </span>
                     )}

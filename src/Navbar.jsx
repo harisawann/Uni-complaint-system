@@ -3,8 +3,9 @@ import FacultyNav from "./FacultyNav";
 import AdminNav from "./AdminNav";
 import { useEffect, useState } from "react";
 import { AngleLeftIcon, AngleRightIcon, User } from "./icons";
+import About from "./About";
 
-const Navbar = ({ role }) => {
+const Navbar = ({ role, children }) => {
 
     const [device, setDevice] = useState(window.innerWidth < 768)
     const [menu, setMenu] = useState(false)
@@ -40,7 +41,7 @@ const Navbar = ({ role }) => {
                     </div>
 
                     {menu && (
-                        <div className=" max-sm:scroll-mt-0 max-sm:h-screen max-sm:top-0 max-sm:w-auto  max-sm:bg-[#b7e4c7] " >
+                        <div className=" max-sm:scroll-mt-0 max-sm:h-screen max-sm:top-0 max-sm:w-auto  max-sm:bg-[#b7e4c7] " onClick={() => setMenu(!menu)}  >
                             <ul>
                                 {role === "student" && <StdNav />}
                                 {role === "faculty" && <FacultyNav />}
@@ -48,6 +49,10 @@ const Navbar = ({ role }) => {
                             </ul>
                         </div>
                     )}
+
+                    <div className="flex-1 p-6">
+                        {children}
+                    </div>
                 </div>
             </>
         )
@@ -68,25 +73,34 @@ const Navbar = ({ role }) => {
                     </div>
                 </nav>
 
-                <div className={` lg:border-2 lg:border-[#b7e4c7] lg:rounded-br-lg lg:rounded-tr-lg lg:bg-[#b7e4c7]  lg:min-h-screen ${slide ? "lg:w-12 lg:transition-all lg:duration-300  " : "lg:w-50 lg:transition-all lg:duration-300 "} `}>
-
-                    <div className=" text-2xl flex justify-end p-2 "
-                        onClick={() => setslide(!slide)}>
-                        {slide ? <AngleRightIcon /> : <AngleLeftIcon />}
+                <div className="flex min-h-screen">
+                    <div className={` lg:border-2 lg:border-[#b7e4c7] lg:rounded-br-lg lg:rounded-tr-lg lg:bg-[#b7e4c7]  lg:min-h-screen  ${slide ? "lg:w-12 lg:transition-all lg:duration-300  " : "lg:w-50 lg:transition-all lg:duration-300 "} `}
+                    onClick={()=>setslide(!slide)}>
+                        <div className=" text-2xl flex justify-end p-2 "
+                            onClick={() => setslide(!slide)}>
+                            {slide ? <AngleRightIcon /> : <AngleLeftIcon />}
+                        </div>
+                        <ul>
+                            {role === "student" && <StdNav slide={slide} />}
+                            {role === "faculty" && <FacultyNav slide={slide} />}
+                            {role === "admin" && <AdminNav slide={slide} />}
+                        </ul>
+                    </div >
+                    <div className="flex-1 p-6">
+                        {children}
                     </div>
-                    <ul>
-                        {role === "student" && <StdNav slide={slide} />}
-                        {role === "faculty" && <FacultyNav slide={slide} />}
-                        {role === "admin" && <AdminNav slide={slide} />}
-                    </ul>
-                </div >
+
+
+                </div>
             </>
         )
     }
 
     return (
         <>
-            {device ? mobile() : pc()}
+            {
+                device ? mobile() : pc()
+            }
         </>
     );
 };
