@@ -62,7 +62,7 @@ const Navbar = ({ role, children }) => {
         return (
             <>
                 <nav className="lg:w-full lg:bg-[#40916c] lg:px-6  lg:flex lg:justify-between lg:items-center   ">
-                    <h1 className="lg:py-5 lg:text-2xl lg:font-semibold">
+                    <h1 className="lg:py-5 lg:text-3xl lg:font-bold">
                         University Complaint System
                     </h1>
                     <div className={` h-auto flex flex-col items-center mx-4 text-2xl `} >

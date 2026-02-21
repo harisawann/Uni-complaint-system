@@ -19,7 +19,7 @@ function App() {
         <Route path='/faculty' element={<><Navbar role="faculty" /> </>} />
         <Route path='/admin' element={<><Navbar role="admin" /> </>} />        
         <Route path="/student/dashboard" element={<Navbar role="student"> <Dashboard /></Navbar>} />          
-        <Route path="/student/complaint" element={<Navbar role="student"> <Complaint /></Navbar>} />          
+        <Route path="/student/submitcomplaint" element={<Navbar role="student"> <Complaint /></Navbar>} />          
         <Route path="/student/mycomplaint" element={<Navbar role="student"> <Mycomplaint /></Navbar>} />        
         <Route path="/student/about" element={<Navbar role="student"> <About /></Navbar>} />        
         <Route path="/student/help" element={<Navbar role="student"> <Help /></Navbar>} />        
