@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Complainthandler from "./Complainthandler";
 
-const Complaint = () => {
+const Submitcomplaint = () => {
     const [title, Settitle] = useState("");
     const [description, Setdescription] = useState("");
     const [priority, Setpriority] = useState("");
@@ -85,10 +84,9 @@ const Complaint = () => {
                     Submit Complaint
                 </button>
             </form>
-
-            {complaints.length > 0 && <Complainthandler complaints={complaints} />}
+           
         </div>
     );
 };
 
-export default Complaint;
+export default Submitcomplaint;

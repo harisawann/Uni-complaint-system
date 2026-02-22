@@ -1,46 +1,79 @@
-const Dashboard = ({ handlecomplaint }) => {
+import { useNavigate, useLocation } from "react-router-dom";
 
-    const headings = "lg:p-4 lg:font-bold lg:text-2xl "
-    const complaints = " lg:border-b-1 lg:border-black lg:p-4 lg:text-lg lg:font-medium "
-
+const Dashboard = ({ data = [] }) => {
+    const location = useLocation();
     const { name } = location.state || { name: "Student" };
+    const navigate = useNavigate();
 
-    const newcomplaint = handlecomplaint
+    const complaintsbox =
+        "bg-white shadow-xl rounded-xl h-48 w-64 m-4 flex flex-col justify-between p-6 text-center";
 
-    var id = 1
-    const today = new Date().toLocaleDateString();
-    const data = [
-        { id: id++, des: "Internet Problem", pri: "High", status: "Pending", date: "2/20/2026" },
-        { id: id++, des: "Watch Lost", pri: "High", status: "Solved", date: "2/2/2026" },
-        { id: id++, des: "No Book Shop", pri: "Normal", status: "Pending", date: "2/3/2026" },
-        { id: id++, des: "Bike Issue", pri: "High", status: "Pending", date: "2/8/2026" },
-        { id: id++, des: "Charger Stolen", pri: "High", status: "Solved", date: "2/18/2026" },
-        
-    ];
+    const titleStyle = "text-gray-600 text-lg font-semibold";
+    const complaintsnumbering = "text-5xl font-bold mt-4";
 
-return (
-    <div className=" lg:h-full">
-        <h1 className="lg:text-3xl lg:font-bold lg:m-4">Welcome, {name}!</h1>
+    const btn =
+        "bg-blue-500 hover:bg-blue-600 transition-all ease-in-out duration-300 hover:scale-105 hover:translate-y-1 hover:translate-x-1 hover:shadow-2xl rounded-md text-xl font-semibold p-2 cursor-pointer";
 
-        <div className="lg:grid lg:grid-cols-5 lg:gap-0 lg:pl-5 lg:pr-5 lg:py-5  ">
+    console.log(data)
+    const totalComplaints = data?.length || 0;
+    const solvedCount = data.filter(item => item.status === "Solved").length;
+    const pendingCount = data.filter(item => item.status === "Pending").length;
+    const inProgressCount = data.filter(item => item.status === "In Progress").length;
 
-            <div className={headings} >Sr#</div>
-            <div className={headings}>Description</div>
-            <div className={headings}>Priority</div>
-            <div className={headings}>Status</div>
-            <div className={headings}>Date</div>
-            {data.map(task => (
-                <>
-                    <div key={`${task.id}-id`} className={complaints}>{task.id}</div>
-                    <div key={`${task.id}-des`} className={complaints}>{task.des}</div>
-                    <div key={`${task.id}-pri`} className={complaints}>{task.pri}</div>
-                    <div key={`${task.id}-status`} className={`${complaints}${task.status == "Solved" ? "lg:text-green-600" : "lg:text-red-600"}`}>{task.status}</div>
-                    <div key={`${task.id}-date`} className={complaints}>{task.date}</div>
-                </>
-            ))}
+    return (
+        <div>
+            <h1 className="lg:text-3xl lg:font-bold lg:p-2 lg:m-4">
+                Welcome, {name}!
+            </h1>
+
+            <div className="mt-5 flex justify-center items-center">
+                <div className="flex flex-wrap justify-center">
+                    <div className={`${complaintsbox} border-t-4 border-blue-400`}>
+                        <div className={titleStyle}>Total Complaints</div>
+                        <div className={`${complaintsnumbering} text-blue-600`}>
+                            {totalComplaints}
+                        </div>
+                    </div>
+
+                    <div className={`${complaintsbox} border-t-4 border-green-500`}>
+                        <div className={titleStyle}>Solved Complaints</div>
+                        <div className={`${complaintsnumbering} text-green-600`}>
+                            {solvedCount}
+                        </div>
+                    </div>
+
+                    <div className={`${complaintsbox} border-t-4 border-yellow-500`}>
+                        <div className={titleStyle}>In Progress Complaints</div>
+                        <div className={`${complaintsnumbering} text-yellow-600`}>
+                            {inProgressCount}
+                        </div>
+                    </div>
+
+                    <div className={`${complaintsbox} border-t-4 border-red-500`}>
+                        <div className={titleStyle}>Pending Complaints</div>
+                        <div className={`${complaintsnumbering} text-red-600`}>
+                            {pendingCount}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex m-10 p-5 justify-around">
+                <button
+                    className={btn}
+                    onClick={() => navigate("/student/submitcomplaint")}
+                >
+                    Add Complaints
+                </button>
+                <button
+                    className={btn}
+                    onClick={() => navigate("/student/mycomplaint")}
+                >
+                    View Complaints
+                </button>
+            </div>
         </div>
-    </div>
-);
+    );
 };
 
 export default Dashboard;
