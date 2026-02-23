@@ -1,17 +1,22 @@
 import React, { useState } from "react";
+import Complaintdata from "./Complaintdata";
+import Mycomplaint from "./Mycomplaint";
+import { Link } from "react-router-dom";
 
-const Submitcomplaint = () => {
+
+const Submitcomplaint = ({ addComplaint }) => {
     const [title, Settitle] = useState("");
     const [description, Setdescription] = useState("");
-    const [priority, Setpriority] = useState("");
-    const [complaints, Setcomplaints] = useState([]);
+    const [priority, Setpriority] = useState("")
 
     const inputStyle =
         "w-full border border-gray-400 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400";
     const labeltext = "block mb-1 font-medium";
     const filled = title && description && priority;
 
+
     const handleSubmit = (e) => {
+        <Complaintdata view={newComplaint} />;
         e.preventDefault();
 
         const newComplaint = {
@@ -21,7 +26,8 @@ const Submitcomplaint = () => {
             status: "Pending",
         };
 
-        Setcomplaints([...complaints, newComplaint]);
+        addComplaint(newComplaint);
+
         Settitle("");
         Setdescription("");
         Setpriority("");
@@ -73,18 +79,18 @@ const Submitcomplaint = () => {
                     <input className="w-full" type="file" accept=".pdf,.jpg,.png" />
                 </div>
 
-                <button
-                    type="submit"
-                    disabled={!filled}
-                    className={`w-full py-2 rounded-md text-white ${filled
-                            ? "bg-blue-600 hover:bg-blue-700 cursor-pointer transition"
-                            : "bg-gray-400 cursor-not-allowed transition"
+                <Link
+                    to="/student/mycomplaint"
+                    onClick={() => addComplaint({ title, description, priority, status: "Pending" })}
+                    className={`w-full py-2 rounded-md text-white block text-center ${filled
+                        ? "bg-blue-600 hover:bg-blue-700 cursor-pointer transition"
+                        : "bg-gray-400 cursor-not-allowed pointer-events-none transition"
                         }`}
                 >
                     Submit Complaint
-                </button>
+                </Link>
             </form>
-           
+
         </div>
     );
 };

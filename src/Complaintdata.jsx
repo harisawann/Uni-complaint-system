@@ -1,31 +1,45 @@
 import Mycomplaint from "./Mycomplaint";
 import Dashboard from "./Dashboard";
+import Submitcomplaint from "./Submitcomplaint";
+import { useState } from "react";
 
-const Complaintdata = () => {
+const Complaintdata = ({ view }) => {
+    const [complaints, setComplaints] = useState([]);
 
-    let id = 1;
-    const data = [
-        { id: id++, des: "Internet Problem", pri: "Low", status: "Pending", date: "2/20/2026" },
-        { id: id++, des: "Watch Lost", pri: "High", status: "Solved", date: "2/2/2026" },
-        { id: id++, des: "No Book Shop", pri: "Medium", status: "Pending", date: "2/3/2026" },
-        { id: id++, des: "Bike Issue", pri: "High", status: "Pending", date: "2/8/2026" },
-        { id: id++, des: "Charger Stolen", pri: "Medium", status: "Solved", date: "2/18/2026" },
-        { id: id++, des: "Classroom Projector Not Working", pri: "High", status: "In Progress", date: "2/10/2026" },
-        { id: id++, des: "Water Cooler Leakage", pri: "Medium", status: "Pending", date: "2/12/2026" },
-        { id: id++, des: "Library AC Issue", pri: "Low", status: "Solved", date: "2/5/2026" },
-        { id: id++, des: "Hostel Electricity Fluctuation", pri: "High", status: "In Progress", date: "2/14/2026" },
-        { id: id++, des: "Parking Area Lights Not Working", pri: "Medium", status: "Pending", date: "2/16/2026" },
-        { id: id++, des: "Cafeteria Food Quality Issue", pri: "Low", status: "Solved", date: "2/7/2026" },
-        { id: id++, des: "Broken Classroom Chairs", pri: "Medium", status: "In Progress", date: "2/9/2026" },
-        { id: id++, des: "Lost Student ID Card", pri: "High", status: "Pending", date: "2/11/2026" },
-        { id: id++, des: "Bus Timing Delay", pri: "Low", status: "Solved", date: "2/4/2026" },
-        { id: id++, des: "Lab Computer Not Booting", pri: "High", status: "In Progress", date: "2/19/2026" }
+    // Function to add a new complaint
+    const addComplaint = (newComplaint) => {
+        const today = new Date().toLocaleDateString();
+        const id = complaints.length + 1 ;
+        const { title, priority } = newComplaint; // get values from new complaint
+        setComplaints(prev => [...prev, { id, date: today, des: title, pri: priority, status: newComplaint.status }]);
+        console.log("Added complaint:", newComplaint);
+    };
+
+    // Static base complaints
+    const baseData = [
+        { id: 1, des: "Internet Problem", pri: "Low", status: "Pending", date: "2/20/2026" },
+        { id: 2, des: "Watch Lost", pri: "High", status: "Solved", date: "2/2/2026" },
+        { id: 3, des: "No Book Shop", pri: "Medium", status: "Pending", date: "2/3/2026" },
+        { id: 4, des: "Bike Issue", pri: "High", status: "Pending", date: "2/8/2026" },
+        { id: 5, des: "Charger Stolen", pri: "Medium", status: "Solved", date: "2/18/2026" },
     ];
-    return (
-        <>
-            <Dashboard data={data} />            
-        </>
-    );
-}
 
-export default Complaintdata
+    // Merge static data + newly added complaints
+    const combinedData = [...baseData, ...complaints];
+
+    if (view === "Mycomplaint") {
+        return <Mycomplaint data={combinedData} />;
+    }
+
+    if (view === "Dashboard") {
+        return <Dashboard data={combinedData} />;
+    }
+
+    if (view === "Submitcomplaint") {
+        return <Submitcomplaint addComplaint={addComplaint} />;
+    }
+
+    return null;
+};
+
+export default Complaintdata;
