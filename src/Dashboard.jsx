@@ -12,9 +12,8 @@ const Dashboard = ({ data = [] }) => {
     const complaintsnumbering = "text-5xl font-bold mt-4";
 
     const btn =
-        "bg-blue-500 hover:bg-blue-600 transition-all ease-in-out duration-300 hover:scale-105 hover:translate-y-1 hover:translate-x-1 hover:shadow-2xl rounded-md text-xl font-semibold p-2 cursor-pointer";
+        "bg-blue-500 hover:bg-blue-600 transition-all ease-in-out duration-300 hover:scale-105 hover:translate-y-1 hover:translate-x-1 hover:shadow-2xl rounded-md text-xl font-semibold p-2 cursor-pointer max-sm:text-md max-sm:mx-23 max-sm:my-2  ";
 
-    console.log(data)
     const totalComplaints = data?.length || 0;
     const solvedCount = data.filter(item => item.status === "Solved").length;
     const pendingCount = data.filter(item => item.status === "Pending").length;
@@ -58,7 +57,7 @@ const Dashboard = ({ data = [] }) => {
                 </div>
             </div>
 
-            <div className="flex m-10 p-5 justify-around">
+            <div className="lg:flex lg:m-10 lg:p-5 justify-around  max-sm:block max-sm:justify-center max-sm:p-2  max-sm:my-6 max-sm:items-center max-sm:flex-col ">
                 <button
                     className={btn}
                     onClick={() => navigate("/student/submitcomplaint")}
