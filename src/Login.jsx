@@ -18,8 +18,7 @@ const Login = () => {
 
   const handlelogin = () => {
     if (role === "Student") navigate("/student", { state: { name } });
-    else if (role === "Faculty") navigate("/faculty", { state: { name } });
-    else if (role === "Admin") navigate("/admin", { state: { name } });
+    
   };
 
 
@@ -55,8 +54,6 @@ const Login = () => {
         >
           <option value="">Select Role</option>
           <option value="Student">Student</option>
-          <option value="Faculty">Faculty</option>
-          <option value="Admin">Admin</option>
         </select>
 
         <button
