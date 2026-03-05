@@ -16,7 +16,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<><Login /> </>} />
-        <Route path='/student' element={<><Navbar role="student" /> </>} />
+        <Route path="/student" element={<Navbar role="student"> <Complaintdata view="Dashboard" /></Navbar>} />
         <Route path='/faculty' element={<><Navbar role="faculty" /> </>} />
         <Route path='/admin' element={<><Navbar role="admin" /> </>} />
         <Route path="/student/dashboard" element={<Navbar role="student"> <Complaintdata view="Dashboard" /></Navbar>} />
